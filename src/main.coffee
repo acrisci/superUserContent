@@ -18,7 +18,7 @@ cssMatch = /\.css$/
 # the stylesheet include path
 addonCssPath = file.join pathFor('ProfD'), 'chrome', CSS_DIR
 
-# create the directory for stylesheets
+# try to create the directory for stylesheets
 unless file.exists addonCssPath
   file.mkpath addonCssPath
 
@@ -39,7 +39,7 @@ compareCssLists = (a, b) ->
   return yes
 
 # creates the stylesheet to be included from the list of files
-buildImports = (fileList) ->
+buildImports = (fileList = []) ->
   fileList
     .map((f) -> file.join(addonCssPath, f))
     .map(url.fromFilename)
@@ -48,6 +48,7 @@ buildImports = (fileList) ->
 
 # creates the PageMod to attach the worker that includes the stylesheets
 doAttach = (worker) ->
+  return unless file.exists addonCssPath
   fileList = file.list(addonCssPath).filter((f) -> cssMatch.test(f))
   if not compareCssLists fileList, cssFiles
     cssFiles = fileList
@@ -56,8 +57,15 @@ doAttach = (worker) ->
       contentStyle: buildImports cssFiles
       contentScriptWhen: "start"
       onAttach: doAttach
-    worker?.tab.reload()
-    worker?.destroy()
+    worker.tab.reload()
+    worker.destroy()
+
+if file.exists addonCssPath
+  cssFiles = file.list(addonCssPath).filter((f) -> cssMatch.test(f))
 
 # begin attaching workers to new pages
-doAttach()
+cssMod = PageMod
+  include: "*"
+  contentStyle: buildImports cssFiles
+  contentScriptWhen: "start"
+  onAttach: doAttach
