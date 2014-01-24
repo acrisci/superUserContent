@@ -1,6 +1,6 @@
 # superUserContent
 
-superUserContent is a simple Firefox plugin that creates a new directory in your profile's `chrome` directory called `userContent.css.d`. You can use this directory as a runtime path for css stylesheets. superUserContent will apply any stylesheets it finds in this directory to pages when they load.
+[superUserContent](https://addons.mozilla.org/en-US/firefox/addon/superusercontent/) is a simple Firefox plugin that creates a new directory in your profile's `chrome` directory called `userContent.css.d`. You can use this directory as a runtime path for css stylesheets. superUserContent will apply any stylesheets it finds in this directory to pages when they load.
 
 * Changes to css files in userContent.css.d will take effect when the page refreshes
 * Full compatability with other plugins and existing themes
