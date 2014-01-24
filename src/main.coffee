@@ -19,8 +19,7 @@ cssMatch = /\.css$/
 addonCssPath = file.join pathFor('ProfD'), 'chrome', CSS_DIR
 
 # try to create the directory for stylesheets
-unless file.exists addonCssPath
-  file.mkpath addonCssPath
+file.mkpath addonCssPath
 
 # the current stylesheets in the include path
 cssFiles = null
