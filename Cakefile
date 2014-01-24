@@ -35,6 +35,8 @@ task 'watch', 'compile and watch', -> build true, -> log ":-)", green
 
 task 'clean', 'clean generated files', -> clean -> log ";)", green
 
+task 'run', 'build and run the addon', -> build -> launch 'cfx', ['run']
+
 
 walk = (dir, done) ->
   results = []
