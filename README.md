@@ -14,6 +14,14 @@ superUserContent is for developers who want an easy way to change the look and f
 
 This plugin was made to address the [current limitations](https://bugzilla.mozilla.org/show_bug.cgi?id=208641) of userContent.css that make it difficult to use for general web development.
 
+## Installing
+
+Building the plugin requires the [Add-on SDK](https://developer.mozilla.org/en-US/Add-ons/SDK).
+
+Compile the [CoffeeScript](http://coffeescript.org/) files with `cake build` and then build the xpi with `cfx xpi`.
+
+For normal users, install the addon by visiting its [listing](https://addons.mozilla.org/en-US/firefox/addon/superusercontent/) on Mozilla.org.
+
 ## License
 
 superUserContent is open source software available under the [MPL 2.0](http://www.mozilla.org/MPL/2.0/) license.
